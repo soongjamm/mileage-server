@@ -27,13 +27,14 @@ public class ReviewEventController {
 					reviewService.modifyReview(event);
 					return ResponseEntity.ok("modified");
 				case DELETE:
+					System.out.println(event.getContent() + event.getAttachedPhotoIds());
 					reviewService.deleteReview(event);
 					return ResponseEntity.noContent().build();
 			}
 		} catch (IllegalArgumentException exception) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
 		} catch (IllegalStateException exception) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).build();
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
 		}
 		return ResponseEntity.badRequest().build();
 	}

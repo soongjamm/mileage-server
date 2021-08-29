@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, UUID> {
-	boolean existsReviewsByUserIdAndPlaceId(UUID userId, UUID placeId);
+	boolean existsReviewByUserIdAndPlaceId(UUID userId, UUID placeId);
 }

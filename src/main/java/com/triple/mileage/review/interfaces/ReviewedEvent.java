@@ -11,11 +11,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewedEvent {
-	enum Type {
+	public enum Type {
 		REVIEW
 	}
 
-	enum Action {
+	public enum Action {
 		ADD, MOD, DELETE
 	}
 

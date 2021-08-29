@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Review {
+
 	@Id
 	private UUID reviewId;
 	private String content;

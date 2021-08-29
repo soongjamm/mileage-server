@@ -6,3 +6,7 @@
 ### 사용되는 API
 - 포인트 내역 추가 : `POST /points`
 - 특정 유저의 포인트 조회 : `POST /users/{user_id}/points`
+
+#### TODO
+- [ ] 리뷰 요청시 validation
+- [ ] 응답 포맷 통일

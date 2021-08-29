@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 public class ReviewService {
 
 	private final ReviewRepository reviewRepository;
+	private final ReviewValidator reviewValidator;
 
 	public Review postReview(ReviewedEvent event) {
+		reviewValidator.validate(event);
 		Review review = new Review(event.getReviewId(), event.getContent(), event.getAttachedPhotoIds(), event.getUserId(), event.getPlaceId());
 		return reviewRepository.save(review);
 	}
