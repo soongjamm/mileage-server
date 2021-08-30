@@ -5,10 +5,12 @@ spring:
     username: sa
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
   flyway:
-    enabled: false
+    enabled: true
+    baseline-on-migrate: true
+
   h2:
     console:
       enabled: true

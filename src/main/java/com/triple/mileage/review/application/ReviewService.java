@@ -6,6 +6,8 @@ import com.triple.mileage.review.interfaces.ReviewedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
@@ -19,6 +21,7 @@ public class ReviewService {
 		return reviewRepository.save(review);
 	}
 
+	@Transactional
 	public void modifyReview(ReviewedEvent event) {
 		Review review = reviewRepository.findById(event.getReviewId()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 리뷰입니다."));
 		review.update(event.getContent(), event.getAttachedPhotoIds());

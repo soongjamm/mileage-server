@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,10 +14,11 @@ import java.util.UUID;
 public class Review {
 
 	@Id
+	@Column(name = "REVIEW_ID")
 	private UUID reviewId;
 	private String content;
 	@ElementCollection
-	@CollectionTable(name = "ATTACHED_PHOTO")
+	@CollectionTable(name = "ATTACHED_PHOTO", joinColumns = @JoinColumn(name = "REVIEW_ID"))
 	private List<UUID> attachedPhotoIds;
 	private UUID userId;
 	private UUID placeId;
