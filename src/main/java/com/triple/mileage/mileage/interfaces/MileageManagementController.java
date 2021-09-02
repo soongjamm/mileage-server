@@ -1,6 +1,7 @@
-package com.triple.mileage.mileage;
+package com.triple.mileage.mileage.interfaces;
 
 import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.mileage.application.MileageManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

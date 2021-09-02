@@ -1,4 +1,4 @@
-package com.triple.mileage.mileage;
+package com.triple.mileage.mileage.domain;
 
 import com.triple.mileage.review.common.BaseEntity;
 import lombok.Builder;
@@ -17,17 +17,18 @@ public class MileageLog extends BaseEntity {
 	private int amount;
 	private UUID userId;
 	private UUID reviewId;
+	private UUID originReviewId;
 	private String reason;
 
 	public MileageLog() {
 	}
 
-	@Builder
-	public MileageLog(int amount, UUID userId, UUID reviewId, String reason) {
+	public MileageLog(int amount, UUID userId, UUID reviewId, UUID originReviewId, String reason) {
 		this.mileageId = UUID.randomUUID();
 		this.userId = userId;
 		this.amount = amount;
 		this.reviewId = reviewId;
+		this.originReviewId = originReviewId;
 		this.reason = reason;
 	}
 

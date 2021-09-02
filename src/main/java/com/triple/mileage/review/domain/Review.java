@@ -2,6 +2,7 @@ package com.triple.mileage.review.domain;
 
 import com.triple.mileage.review.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,7 @@ public class Review extends BaseEntity {
 	private UUID placeId;
 	private UUID originReviewId;
 
+	@Builder
 	public Review(UUID reviewId, String content, List<UUID> attachedPhotoIds, UUID userId, UUID placeId) {
 		this.reviewId = reviewId;
 		this.content = content;

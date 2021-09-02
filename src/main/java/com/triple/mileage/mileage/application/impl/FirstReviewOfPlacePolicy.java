@@ -1,6 +1,8 @@
-package com.triple.mileage.mileage;
+package com.triple.mileage.mileage.application.impl;
 
 import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.mileage.application.MileagePolicy;
+import com.triple.mileage.mileage.domain.MileageLog;
 import com.triple.mileage.place.Place;
 import com.triple.mileage.place.PlaceRepository;
 import com.triple.mileage.review.application.ReviewAction;
@@ -16,7 +18,7 @@ public class FirstReviewOfPlacePolicy implements MileagePolicy {
 
 	@Override
 	public MileageLog apply(Review review) {
-		return new MileageLog(1, review.getUserId(), review.getReviewId(), getReason());
+		return new MileageLog(1, review.getUserId(), review.getReviewId(), review.getOriginReviewId(), getReason());
 	}
 
 	@Override

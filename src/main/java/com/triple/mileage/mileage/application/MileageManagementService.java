@@ -1,8 +1,8 @@
-package com.triple.mileage.mileage;
+package com.triple.mileage.mileage.application;
 
 import com.triple.mileage.common.ReviewOutbox;
-import com.triple.mileage.review.domain.Review;
-import com.triple.mileage.review.domain.ReviewRepository;
+import com.triple.mileage.mileage.domain.MileageLog;
+import com.triple.mileage.mileage.domain.MileageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

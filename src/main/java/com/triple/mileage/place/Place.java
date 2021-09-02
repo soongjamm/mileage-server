@@ -16,6 +16,14 @@ public class Place {
 	@Version
 	private int version;
 
+	public Place() {
+
+	}
+
+	public Place(UUID placeId) {
+		this.placeId = placeId;
+	}
+
 	public void reviewed() {
 		this.reviewed = true;
 	}

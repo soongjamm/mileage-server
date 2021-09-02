@@ -1,11 +1,22 @@
 package com.triple.mileage.review;
 
+import com.triple.mileage.review.domain.Review;
 import com.triple.mileage.review.interfaces.ReviewRequest;
 
 import java.util.List;
 import java.util.UUID;
 
 public class TestData {
+	public static Review.ReviewBuilder review() {
+		ReviewRequest request = reviewRequest().build();
+		return Review.builder()
+				.reviewId(request.getReviewId())
+				.userId(request.getUserId())
+				.placeId(request.getPlaceId())
+				.content(request.getContent())
+				.attachedPhotoIds(request.getAttachedPhotoIds());
+	}
+
 	public static ReviewRequest.ReviewRequestBuilder reviewRequest() {
 		return ReviewRequest.builder()
 				.type(ReviewRequest.Type.REVIEW)
