@@ -17,10 +17,7 @@ public class DeleteReviewPolicy implements MileagePolicy {
 
 	@Override
 	public MileageLog apply(Review review) {
-		int sum = mileageRepository.findAllByOriginReviewId(review.getOriginReviewId())
-				.stream()
-				.mapToInt(MileageLog::getAmount)
-				.sum();
+		int sum = mileageRepository.getSumByOriginReview(review.getOriginReviewId());
 		return new MileageLog(-sum, review.getUserId(), review.getReviewId(), review.getOriginReviewId(), getReason());
 	}
 

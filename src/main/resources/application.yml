@@ -21,6 +21,8 @@ spring:
 #      hibernate:
 #        type: trace
 
-url:
-  mileage:
-    append: "http://localhost:8080/mileage"
+mileage:
+  url:
+    append: "http://localhost:8080/mileages"
+  page:
+    size: 5
