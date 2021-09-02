@@ -15,11 +15,11 @@ spring:
     console:
       enabled: true
 
-logging:
-  level:
-    org:
-      hibernate:
-        type: trace
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type: trace
 
 url:
   mileage:

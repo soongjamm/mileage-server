@@ -1,6 +1,8 @@
 package com.triple.mileage.mileage;
 
 import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.domain.Review;
+import com.triple.mileage.review.domain.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,14 @@ import java.util.List;
 public class MileageCalculator {
 
 	private final List<MileagePolicy> policies;
+	private final ReviewRepository reviewRepository;
 
-	public List<MileageLog> calculate(ReviewOutbox reviewOutbox) {
+	public List<MileageLog> calculate(ReviewOutbox outbox) {
 		List<MileageLog> mileages = new ArrayList<>();
+		Review review = reviewRepository.findById(outbox.getReviewId()).orElseThrow();
 		for (MileagePolicy policy : policies) {
-			if (policy.isSatisfied(reviewOutbox)) {
-				mileages.add(policy.apply(reviewOutbox));
+			if (policy.isSatisfied(outbox, review)) {
+				mileages.add(policy.apply(review));
 			}
 		}
 		return mileages;

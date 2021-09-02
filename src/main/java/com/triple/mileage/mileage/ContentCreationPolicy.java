@@ -17,13 +17,12 @@ public class ContentCreationPolicy implements MileagePolicy {
 	private final ReviewRepository reviewRepository;
 
 	@Override
-	public MileageLog apply(ReviewOutbox reviewOutbox) {
-		return new MileageLog(1, reviewOutbox.getReviewId(), getReason());
+	public MileageLog apply(Review review) {
+		return new MileageLog(1, review.getUserId(), review.getReviewId(), getReason());
 	}
 
 	@Override
-	public boolean isSatisfied(ReviewOutbox reviewOutbox) {
-		Review review = reviewRepository.findById(reviewOutbox.getReviewId()).orElseThrow();
+	public boolean isSatisfied(ReviewOutbox reviewOutbox, Review review) {
 		if (review.getContent().isEmpty()) {
 			return false;
 		}

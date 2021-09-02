@@ -19,7 +19,7 @@ public class MileagePolicyConfig {
 	@Bean
 	public List<MileagePolicy> mileagePolicies() {
 		List<MileagePolicy> policies = new ArrayList<>();
-		policies.add(new FirstReviewOfPlacePolicy(placeRepository, reviewRepository));
+		policies.add(new FirstReviewOfPlacePolicy(placeRepository));
 		policies.add(new AttachedPhotoCreationPolicy(reviewRepository));
 		policies.add(new ContentCreationPolicy(reviewRepository));
 		return policies;

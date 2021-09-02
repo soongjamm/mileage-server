@@ -13,12 +13,16 @@ import java.util.List;
 @Service
 public class MileageManagementService {
 
-	private final ReviewRepository reviewRepository;
+	private final MileageRepository mileageRepository;
 	private final MileageCalculator mileageCalculator;
 
 	@Transactional
 	public void handle(ReviewOutbox outbox) {
-		Review review = reviewRepository.findById(outbox.getReviewId()).orElseThrow();
 		List<MileageLog> mileages = mileageCalculator.calculate(outbox);
+		try {
+			mileageRepository.saveAll(mileages);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
 	}
 }
