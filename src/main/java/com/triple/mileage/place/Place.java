@@ -1,10 +1,13 @@
 package com.triple.mileage.place;
 
+import lombok.Getter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Version;
 import java.util.UUID;
 
+@Getter
 @Entity
 public class Place {
 	@Id
@@ -12,4 +15,12 @@ public class Place {
 	private boolean reviewed;
 	@Version
 	private int version;
+
+	public void reviewed() {
+		this.reviewed = true;
+	}
+
+	public void notReviewed(){
+		this.reviewed = false;
+	}
 }

@@ -14,10 +14,12 @@ create table user
 
 create table review
 (
-    review_id binary not null,
-    content   varchar(255),
-    place_id  binary,
-    user_id   binary,
+    review_id        binary not null,
+    content          varchar(255),
+    place_id         binary not null,
+    user_id          binary not null,
+    created_date     datetime not null,
+    origin_review_id binary not null,
     primary key (review_id)
 );
 
@@ -27,5 +29,14 @@ create table attached_photo
     attached_photo_ids binary
 );
 
+create table review_outbox
+(
+    outbox_id binary       not null,
+    review_id binary       not null,
+    action    varchar(30)  not null,
+    payload   varchar(255) not null,
+    primary key (outbox_id)
+);
+
 alter table attached_photo
-    add constraint FK_ foreign key (review_id) references review
+    add constraint FK_attached_photo foreign key (review_id) references review on delete cascade;

@@ -1,14 +1,14 @@
 package com.triple.mileage.review;
 
-import com.triple.mileage.review.interfaces.ReviewedEvent;
+import com.triple.mileage.review.interfaces.ReviewRequest;
 
 import java.util.List;
 import java.util.UUID;
 
 public class TestData {
-	public static ReviewedEvent.ReviewedEventBuilder reviewedEvent() {
-		return ReviewedEvent.builder()
-				.type(ReviewedEvent.Type.REVIEW)
+	public static ReviewRequest.ReviewRequestBuilder reviewRequest() {
+		return ReviewRequest.builder()
+				.type(ReviewRequest.Type.REVIEW)
 				.action(null)
 				.reviewId(UUID.fromString("24a06458-dc5f-4878-9381-ebb7b2667772"))
 				.content("좋아요!")

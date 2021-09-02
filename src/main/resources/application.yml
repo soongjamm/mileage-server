@@ -20,3 +20,7 @@ logging:
     org:
       hibernate:
         type: trace
+
+url:
+  point:
+    append: "http://localhost:8080/points"

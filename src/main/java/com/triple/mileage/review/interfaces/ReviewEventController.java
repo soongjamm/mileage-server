@@ -17,11 +17,11 @@ public class ReviewEventController {
 	private final ReviewService reviewService;
 
 	@PostMapping("/events")
-	public ResponseEntity<?> receive(@RequestBody ReviewedEvent event) {
+	public ResponseEntity<?> receive(@RequestBody ReviewRequest event) {
 		try {
 			switch (event.getAction()) {
 				case ADD:
-					reviewService.postReview(event);
+					reviewService.addReview(event);
 					return ResponseEntity.created(URI.create("/reviews/" + event.getReviewId())).body("created");
 				case MOD:
 					reviewService.modifyReview(event);
