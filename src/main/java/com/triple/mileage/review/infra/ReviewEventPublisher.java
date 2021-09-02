@@ -1,6 +1,7 @@
-package com.triple.mileage.review.application;
+package com.triple.mileage.review.infra;
 
 import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutboxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;

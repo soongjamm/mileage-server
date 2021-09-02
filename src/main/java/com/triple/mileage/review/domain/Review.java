@@ -17,9 +17,15 @@ import java.util.UUID;
 @Entity
 public class Review extends BaseEntity {
 
+
+
+	enum ReviewStatus {
+		ORIGIN, MODIFIED, DELETED;
+	}
 	@Id
 	@Column(name = "REVIEW_ID")
 	private UUID reviewId;
+
 	private String content;
 	@ElementCollection
 	@CollectionTable(name = "ATTACHED_PHOTO", joinColumns = @JoinColumn(name = "REVIEW_ID"))
@@ -27,7 +33,8 @@ public class Review extends BaseEntity {
 	private UUID userId;
 	private UUID placeId;
 	private UUID originReviewId;
-
+	@Enumerated(EnumType.STRING)
+	private ReviewStatus reviewStatus = ReviewStatus.ORIGIN;
 	@Builder
 	public Review(UUID reviewId, String content, List<UUID> attachedPhotoIds, UUID userId, UUID placeId) {
 		this.reviewId = reviewId;
@@ -36,6 +43,7 @@ public class Review extends BaseEntity {
 		this.userId = userId;
 		this.placeId = placeId;
 		this.originReviewId = reviewId;
+		this.reviewStatus = ReviewStatus.ORIGIN;
 	}
 
 	private Review(UUID reviewId, String content, List<UUID> attachedPhotoIds, UUID userId, UUID placeId, UUID originReviewId) {
@@ -45,7 +53,12 @@ public class Review extends BaseEntity {
 
 	public Review update(String content, List<UUID> attachedPhotoIds) {
 		Review review = new Review(UUID.randomUUID(), content, attachedPhotoIds, this.userId, this.placeId, this.originReviewId);
+		this.reviewStatus = ReviewStatus.MODIFIED;
 		return review;
+	}
+
+	public void delete() {
+		this.reviewStatus = ReviewStatus.DELETED;
 	}
 
 	@Override

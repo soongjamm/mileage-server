@@ -17,7 +17,7 @@ public class ReviewMessageRelay {
 	private final ReviewOutboxRepository reviewOutboxRepository;
 
 	@Transactional
-	@Scheduled(fixedDelay = 1000 * 10)
+	@Scheduled(fixedDelay = 1000 * 3)
 	public void readOutbox() {
 		List<ReviewOutbox> unreadMessages = reviewOutboxRepository.findAll();
 		pointRestClient.addPoint(unreadMessages);

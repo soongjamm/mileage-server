@@ -31,6 +31,6 @@ public class DeleteReviewPolicy implements MileagePolicy {
 
 	@Override
 	public String getReason() {
-		return null;
+		return "Review is deleted.";
 	}
 }

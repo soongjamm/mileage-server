@@ -1,4 +1,4 @@
-package com.triple.mileage.review.application;
+package com.triple.mileage.review.infra;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
