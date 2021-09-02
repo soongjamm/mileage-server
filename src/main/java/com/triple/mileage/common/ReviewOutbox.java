@@ -6,11 +6,12 @@ import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
 @Entity
-public class ReviewOutbox {
+public class ReviewOutbox implements Serializable {
 	@Id
 	private UUID outboxId;
 	private UUID reviewId;
@@ -23,7 +24,7 @@ public class ReviewOutbox {
 
 	@Builder
 	public ReviewOutbox(UUID reviewId, ReviewAction action, String payload) {
-		this.outboxId = new UUIDSource().uuid();
+		this.outboxId = UUID.randomUUID();
 		this.reviewId = reviewId;
 		this.action = action;
 		this.payload = payload;

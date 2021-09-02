@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class PointRestClient {
 
-	@Value("${url.point.append}")
+	@Value("${url.mileage.append}")
 	private String url;
 	private RestTemplate restTemplate = new RestTemplate();
 

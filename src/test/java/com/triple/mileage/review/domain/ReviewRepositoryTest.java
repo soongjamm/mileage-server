@@ -45,9 +45,11 @@ class ReviewRepositoryTest {
 		Review modified = original.update("modified content", Collections.emptyList());
 		//when
 		reviewRepository.saveAllAndFlush(List.of(original, modified));
+		List<Review> all = reviewRepository.findAll();
 		em.clear();
 		//then
-		assertThat(reviewRepository.findAll().size()).isEqualTo(2);
+		assertThat(all.size()).isEqualTo(2);
+		System.out.println(all.get(0).getCreatedDate());
 		em.clear();
 	}
 }

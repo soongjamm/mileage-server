@@ -8,8 +8,7 @@
 - 특정 유저의 포인트 조회 : `POST /users/{user_id}/points`
 
 #### TODO
-- [ ] 리뷰 요청시 validation
+- [x] 리뷰 요청시 validation
 - [ ] 응답 포맷 통일
 - [ ] 테스트 추가
-- [ ] event 상태 update를 batch 처리
-  - [ ] restTemplate retry
+- [x] restTemplate retry

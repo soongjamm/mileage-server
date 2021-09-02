@@ -22,5 +22,5 @@ logging:
         type: trace
 
 url:
-  point:
-    append: "http://localhost:8080/points"
+  mileage:
+    append: "http://localhost:8080/mileage"
