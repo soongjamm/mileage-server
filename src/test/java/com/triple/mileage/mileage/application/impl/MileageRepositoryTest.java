@@ -40,7 +40,7 @@ class MileageRepositoryTest {
 		//when
 		MileageLog apply = policy.apply(review);
 		//then
-		assertThat(apply.getAmount()).isEqualTo(-2);
+		assertThat(apply.getPoint()).isEqualTo(-2);
 	}
 
 	@Test

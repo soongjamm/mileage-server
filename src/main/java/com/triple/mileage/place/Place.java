@@ -1,6 +1,7 @@
 package com.triple.mileage.place;
 
 import lombok.Getter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,13 +11,14 @@ import java.util.UUID;
 @Getter
 @Entity
 public class Place {
-	@Id
+	@Id @Type(type = "uuid-char")
 	private UUID placeId;
 	private boolean reviewed;
+
 	@Version
 	private int version;
 
-	public Place() {
+	protected Place() {
 
 	}
 

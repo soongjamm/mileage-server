@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,28 +14,38 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Review extends BaseEntity {
-
-
 
 	enum ReviewStatus {
 		ORIGIN, MODIFIED, DELETED;
 	}
-	@Id
+
+	@Id @Type(type = "uuid-char")
 	@Column(name = "REVIEW_ID")
 	private UUID reviewId;
-
 	private String content;
-	@ElementCollection
+
+	@ElementCollection @Type(type = "uuid-char")
 	@CollectionTable(name = "ATTACHED_PHOTO", joinColumns = @JoinColumn(name = "REVIEW_ID"))
 	private List<UUID> attachedPhotoIds;
+
+	@Type(type = "uuid-char")
 	private UUID userId;
+
+	@Type(type = "uuid-char")
 	private UUID placeId;
+
+	@Type(type = "uuid-char")
 	private UUID originReviewId;
+
 	@Enumerated(EnumType.STRING)
 	private ReviewStatus reviewStatus = ReviewStatus.ORIGIN;
+
+	protected Review() {
+
+	}
+
 	@Builder
 	public Review(UUID reviewId, String content, List<UUID> attachedPhotoIds, UUID userId, UUID placeId) {
 		this.reviewId = reviewId;

@@ -3,6 +3,7 @@ package com.triple.mileage.common;
 import com.triple.mileage.review.application.ReviewAction;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,14 +15,17 @@ import java.util.UUID;
 @Getter
 @Entity
 public class ReviewOutbox implements Serializable {
-	@Id
+	@Id @Type(type = "uuid-char")
 	private UUID outboxId;
+
+	@Type(type = "uuid-char")
 	private UUID reviewId;
+
 	@Enumerated(EnumType.STRING)
 	private ReviewAction action;
 	private String payload;
 
-	public ReviewOutbox() {
+	protected ReviewOutbox() {
 
 	}
 

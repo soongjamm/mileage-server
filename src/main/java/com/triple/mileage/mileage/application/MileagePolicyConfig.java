@@ -7,7 +7,6 @@ import com.triple.mileage.review.domain.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MileagePolicyConfig {
@@ -23,13 +22,12 @@ public class MileagePolicyConfig {
 
 	@Bean
 	public List<MileagePolicy> mileagePolicies() {
-		List<MileagePolicy> policies = new ArrayList<>();
-		policies.add(new FirstReviewOfPlacePolicy(placeRepository));
-		policies.add(new AttachedPhotoCreationPolicy(reviewRepository));
-		policies.add(new AttachedPhotoDeletionPolicy(reviewRepository));
-		policies.add(new ContentCreationPolicy(reviewRepository));
-		policies.add(new ContentDeletionPolicy(reviewRepository));
-		policies.add(new DeleteReviewPolicy(mileageRepository));
-		return policies;
+		return List.of(
+				new FirstReviewOfPlacePolicy(placeRepository),
+				new AttachedPhotoCreationPolicy(reviewRepository),
+				new AttachedPhotoDeletionPolicy(reviewRepository),
+				new ContentCreationPolicy(reviewRepository),
+				new ContentDeletionPolicy(reviewRepository),
+				new DeleteReviewPolicy(mileageRepository));
 	}
 }

@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
+import java.util.UUID;
+
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,7 +31,7 @@ class ReviewEventPublisherTest {
 	@Test
 	void if_publish_spring_publishEvent_is_invoked() {
 		//given
-		ReviewOutbox outbox = new ReviewOutbox();
+		ReviewOutbox outbox = ReviewOutbox.builder().reviewId(UUID.randomUUID()).payload("").action(ReviewAction.ADD).build();
 		//when
 		eventPublisher.publish(outbox);
 		//then

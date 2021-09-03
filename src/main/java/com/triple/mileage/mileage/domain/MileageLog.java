@@ -1,8 +1,8 @@
 package com.triple.mileage.mileage.domain;
 
 import com.triple.mileage.review.common.BaseEntity;
-import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,21 +12,28 @@ import java.util.UUID;
 @Getter
 @Entity
 public class MileageLog extends BaseEntity {
-	@Id
+
+	@Id @Type(type = "uuid-char")
 	private UUID mileageId;
-	private int amount;
+	private int point;
+
+	@Type(type = "uuid-char")
 	private UUID userId;
+
+	@Type(type = "uuid-char")
 	private UUID reviewId;
+
+	@Type(type = "uuid-char")
 	private UUID originReviewId;
 	private String reason;
 
-	public MileageLog() {
+	protected MileageLog() {
 	}
 
-	public MileageLog(int amount, UUID userId, UUID reviewId, UUID originReviewId, String reason) {
+	public MileageLog(int point, UUID userId, UUID reviewId, UUID originReviewId, String reason) {
 		this.mileageId = UUID.randomUUID();
 		this.userId = userId;
-		this.amount = amount;
+		this.point = point;
 		this.reviewId = reviewId;
 		this.originReviewId = originReviewId;
 		this.reason = reason;
