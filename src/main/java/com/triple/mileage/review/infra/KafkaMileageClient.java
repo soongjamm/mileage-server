@@ -1,6 +1,6 @@
 package com.triple.mileage.review.infra;
 
-import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutbox;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;

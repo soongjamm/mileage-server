@@ -22,23 +22,6 @@ class ReviewRepositoryTest {
 	private EntityManager em;
 
 	@Test
-	void deleteAllByOriginId() {
-		//given
-		Review original = reviewRequest().build().toEntity();
-		Review modified = original.update("modified content", Collections.emptyList());
-		reviewRepository.saveAllAndFlush(List.of(original, modified));
-		em.clear();
-
-		//when
-		reviewRepository.deleteAllByOriginId(modified.getOriginReviewId());
-		int size = reviewRepository.findAll().size();
-
-		//then
-		assertThat(size).isEqualTo(0);
-
-	}
-
-	@Test
 	void save() {
 		//given
 		Review original = reviewRequest().build().toEntity();

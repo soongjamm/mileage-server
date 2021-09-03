@@ -1,10 +1,7 @@
 package com.triple.mileage.review.domain;
 
-import com.triple.mileage.review.common.BaseEntity;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -15,9 +12,9 @@ import java.util.UUID;
 
 @Getter
 @Entity
-public class Review extends BaseEntity {
+public class Review {
 
-	enum ReviewStatus {
+	public enum ReviewStatus {
 		ORIGIN, MODIFIED, DELETED;
 	}
 
@@ -42,6 +39,8 @@ public class Review extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private ReviewStatus reviewStatus = ReviewStatus.ORIGIN;
 
+	private LocalDateTime createdDate = LocalDateTime.now(); // JPAAudit 이 갑자기 동작하지 않아서 임시로 생성
+
 	protected Review() {
 
 	}
@@ -64,17 +63,14 @@ public class Review extends BaseEntity {
 
 	public Review update(String content, List<UUID> attachedPhotoIds) {
 		Review review = new Review(UUID.randomUUID(), content, attachedPhotoIds, this.userId, this.placeId, this.originReviewId);
-		this.reviewStatus = ReviewStatus.MODIFIED;
+		review.reviewStatus = ReviewStatus.MODIFIED;
 		return review;
 	}
 
-	public void delete() {
-		this.reviewStatus = ReviewStatus.DELETED;
-	}
-
-	@Override
-	public LocalDateTime getCreatedDate() {
-		return super.getCreatedDate();
+	public Review delete() {
+		Review review = new Review(UUID.randomUUID(), content, attachedPhotoIds, this.userId, this.placeId, this.originReviewId);
+		review.reviewStatus = ReviewStatus.DELETED;
+		return review;
 	}
 
 	@Override

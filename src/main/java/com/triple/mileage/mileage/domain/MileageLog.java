@@ -1,6 +1,5 @@
 package com.triple.mileage.mileage.domain;
 
-import com.triple.mileage.review.common.BaseEntity;
 import lombok.Getter;
 import org.hibernate.annotations.Type;
 
@@ -11,7 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Entity
-public class MileageLog extends BaseEntity {
+public class MileageLog {
 
 	@Id @Type(type = "uuid-char")
 	private UUID mileageId;
@@ -26,6 +25,7 @@ public class MileageLog extends BaseEntity {
 	@Type(type = "uuid-char")
 	private UUID originReviewId;
 	private String reason;
+	private LocalDateTime createdDate = LocalDateTime.now(); // JPAAudit 이 갑자기 동작하지 않아서 임시로 생성
 
 	protected MileageLog() {
 	}
@@ -39,8 +39,4 @@ public class MileageLog extends BaseEntity {
 		this.reason = reason;
 	}
 
-	@Override
-	public LocalDateTime getCreatedDate() {
-		return super.getCreatedDate();
-	}
 }

@@ -9,10 +9,12 @@
 
 ### 실행 방법
 ```
-cd docker
+cd  docker-mileage
 docker-compose up
-
-(....추가)
+cd ../
+./gradlew clean
+./graldew bootJar
+java -jar ./build/libs/mileage-0.0.1-SNAPSHOT.jar --spring.profiles.active=mysql
 ```
 
 ### 데이터베이스 구조
@@ -91,12 +93,3 @@ ID가 주어진 유저의 포인트 합산(sum)과 주어진 적립 내역을 �
     "pageable": {
         ... (생략)
 ```
-
-
-#### TODO
-- [x] 리뷰 요청시 validation
-- [ ] 응답 포맷 통일
-- [x] 단위테스트 추가
-- [ ] 통합테스트 추가
-- [x] restTemplate retry
-- [ ] 인덱스 적용

@@ -1,6 +1,6 @@
 package com.triple.mileage.mileage.application.impl;
 
-import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutbox;
 import com.triple.mileage.review.application.ReviewAction;
 import com.triple.mileage.review.infra.ReviewModified;
 import com.triple.mileage.review.domain.Review;

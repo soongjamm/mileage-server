@@ -1,7 +1,7 @@
 package com.triple.mileage.mileage.application.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutbox;
 import com.triple.mileage.mileage.application.MileagePolicy;
 import com.triple.mileage.mileage.domain.MileageLog;
 import com.triple.mileage.review.application.ReviewAction;

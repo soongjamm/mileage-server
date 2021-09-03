@@ -1,6 +1,6 @@
 package com.triple.mileage.review.infra;
 
-import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutbox;
 import com.triple.mileage.review.application.ReviewOutboxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;

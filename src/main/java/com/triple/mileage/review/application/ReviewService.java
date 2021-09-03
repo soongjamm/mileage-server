@@ -1,6 +1,5 @@
 package com.triple.mileage.review.application;
 
-import com.triple.mileage.common.ReviewOutbox;
 import com.triple.mileage.review.domain.Review;
 import com.triple.mileage.review.domain.ReviewRepository;
 import com.triple.mileage.review.infra.ReviewCreated;
@@ -54,7 +53,8 @@ public class ReviewService {
 	public void deleteReview(ReviewRequest reviewRequest) {
 		UUID reviewId = reviewRequest.getReviewId();
 		Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 리뷰입니다."));
-		review.delete();
+		Review delete = review.delete();
+		reviewRepository.save(delete);
 
 		reviewEventPublisher.publish(ReviewOutbox.builder()
 				.reviewId(review.getReviewId())

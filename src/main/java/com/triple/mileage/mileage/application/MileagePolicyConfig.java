@@ -28,6 +28,6 @@ public class MileagePolicyConfig {
 				new AttachedPhotoDeletionPolicy(reviewRepository),
 				new ContentCreationPolicy(reviewRepository),
 				new ContentDeletionPolicy(reviewRepository),
-				new DeleteReviewPolicy(mileageRepository));
+				new DeleteReviewPolicy(mileageRepository, placeRepository));
 	}
 }

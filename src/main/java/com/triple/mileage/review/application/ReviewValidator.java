@@ -1,11 +1,16 @@
 package com.triple.mileage.review.application;
 
 import com.triple.mileage.place.PlaceRepository;
+import com.triple.mileage.review.domain.Review;
 import com.triple.mileage.review.domain.ReviewRepository;
 import com.triple.mileage.review.interfaces.ReviewRequest;
 import com.triple.mileage.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
@@ -31,9 +36,13 @@ public class ReviewValidator {
 	}
 
 	private void checkDuplication(ReviewRequest event) {
-		boolean duplicate = reviewRepository.existsReviewByUserIdAndPlaceId(event.getUserId(), event.getPlaceId());
-		if (duplicate) {
-			throw new IllegalStateException("이미 해당 지역에 리뷰가 존재합니다.");
+		List<Review> reviews = reviewRepository.existsReview(
+				event.getUserId(), event.getPlaceId(),
+				PageRequest.of(0, 1, Sort.by("createdDate").descending()));
+		if (reviews.size() > 0) {
+			if (reviews.get(0).getReviewStatus() != Review.ReviewStatus.DELETED) {
+				throw new IllegalStateException("이미 해당 지역에 리뷰가 존재합니다.");
+			}
 		}
 	}
 

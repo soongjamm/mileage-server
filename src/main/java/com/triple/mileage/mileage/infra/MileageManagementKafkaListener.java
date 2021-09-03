@@ -1,6 +1,6 @@
 package com.triple.mileage.mileage.infra;
 
-import com.triple.mileage.common.ReviewOutbox;
+import com.triple.mileage.review.application.ReviewOutbox;
 import com.triple.mileage.mileage.application.MileageManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;

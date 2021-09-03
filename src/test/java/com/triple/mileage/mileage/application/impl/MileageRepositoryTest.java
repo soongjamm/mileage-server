@@ -2,6 +2,7 @@ package com.triple.mileage.mileage.application.impl;
 
 import com.triple.mileage.mileage.domain.MileageLog;
 import com.triple.mileage.mileage.domain.MileageRepository;
+import com.triple.mileage.place.PlaceRepository;
 import com.triple.mileage.review.domain.Review;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,12 +21,14 @@ class MileageRepositoryTest {
 
 	@Autowired
 	private MileageRepository mileageRepository;
+	@Autowired
+	private PlaceRepository placeRepository;
 	private DeleteReviewPolicy policy;
 	private Review review = review().build();
 
 	@BeforeEach
 	void setup() {
-		 policy = new DeleteReviewPolicy(mileageRepository);
+		 policy = new DeleteReviewPolicy(mileageRepository, placeRepository);
 	}
 
 	@Test
