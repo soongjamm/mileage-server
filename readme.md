@@ -28,12 +28,10 @@ docker-compose up
 ```
 POST /events
 주어진 데이터를 이용해 리뷰를 추가/수정/삭제 후 이벤트를 outbox에 저장합니다.
+(저장된 이벤트는 주기적으로 MessageRelay에 의해 MessageQueue로 전송되어 마일리지 적립을 처리합니다.  
+리스너에서 이벤트를 받으면 리뷰 이벤트를 분석하여 마일리지를 적립/반환 처리합니다.)
 ```
 
-```
-POST /mileages
-리뷰 이벤트를 분석하여 마일리지를 적립/반환 처리합니다.
-```
 
 ```
 GET /mileages?userId={USER_ID}&page={PAGE}
@@ -98,5 +96,6 @@ ID가 주어진 유저의 포인트 합산(sum)과 주어진 적립 내역을 �
 #### TODO
 - [x] 리뷰 요청시 validation
 - [ ] 응답 포맷 통일
-- [x] 테스트 추가
+- [x] 단위테스트 추가
+- [ ] 통합테스트 추가
 - [x] restTemplate retry

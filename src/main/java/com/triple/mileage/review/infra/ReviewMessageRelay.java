@@ -13,14 +13,14 @@ import java.util.List;
 @Component
 public class ReviewMessageRelay {
 
-	private final PointRestClient pointRestClient;
+	private final MileageClient mileageRestClient;
 	private final ReviewOutboxRepository reviewOutboxRepository;
 
 	@Transactional
 	@Scheduled(fixedDelay = 1000 * 3)
 	public void readOutbox() {
 		List<ReviewOutbox> unreadMessages = reviewOutboxRepository.findAll();
-		pointRestClient.addPoint(unreadMessages);
+		mileageRestClient.requestMileage(unreadMessages);
 		reviewOutboxRepository.deleteAll(unreadMessages);
 	}
 }

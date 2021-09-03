@@ -16,13 +16,13 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class PointRestClient {
+public class MileageRestClient implements MileageClient {
 
 	@Value("${mileage.url.append}")
 	private String url;
 	private RestTemplate restTemplate = new RestTemplate();
 
-	public PointRestClient() {
+	public MileageRestClient() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -30,8 +30,9 @@ public class PointRestClient {
 		restTemplate.setMessageConverters(messageConverters);
 	}
 
+	@Override
 	@Retryable(value = RuntimeException.class, maxAttempts = 3, backoff = @Backoff(delay = 100))
-	public ResponseEntity<Void> addPoint(List<ReviewOutbox> outboxes) {
+	public ResponseEntity<Void> requestMileage(List<ReviewOutbox> outboxes) {
 		return restTemplate.postForEntity(url, outboxes, Void.class);
 	}
 }
